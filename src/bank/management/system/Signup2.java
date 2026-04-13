@@ -170,11 +170,6 @@ public class Signup2 extends JFrame implements ActionListener {
 
 
 
-
-
-
-
-
         setLayout(null);
         setSize(850,750);
         setLocation(450,80);
@@ -184,6 +179,41 @@ setVisible(true);
 
     @Override
     public void actionPerformed(ActionEvent e) {
+     String rel=(String) comboBox.getSelectedItem();
+     String cate=(String) comboBox2.getSelectedItem();
+     String inc=(String) comboBox3.getSelectedItem();
+     String edu=(String) comboBox4.getSelectedItem();
+     String occ=(String) comboBox5.getSelectedItem();
+
+      String pan=textPan.getText();
+      String addhar=textAadhar.getText();
+
+      String scitizen=" ";
+      if((r1.isSelected())){
+          scitizen="Yes";
+      } else if(r2.isSelected()){
+          scitizen="No";
+      }
+        String eAccount=" ";
+        if((r1.isSelected())){
+            eAccount="Yes";
+        } else if(r2.isSelected()){
+            eAccount="No";
+        }
+
+        try{
+            if(textPan.getText().equals("") || textAadhar.getText().equals("")){
+                JOptionPane.showMessageDialog(null,"Fill all the fields");
+            }else {
+                test1 t1=new test1();
+                String q= "insert into Signuptwo values('"+formno+"','"+rel+"','"+cate+"','"+inc+"','"+edu+"','"+occ+"','"+pan+"','"+addhar+"','"+scitizen+"','"+eAccount+"')";
+                t1.statement.executeUpdate(q);
+                new Signup3(formno);
+                setVisible(false);
+            }
+        }catch(Exception E){
+            E.printStackTrace();
+        }
 
     }
 
